@@ -40,4 +40,7 @@ interface ApiService {
     @GET("/api/getReference.php")
     fun getReference(@Query("lessonid") lessonid: String) : Call<List<Reference>>
 
+    // https://mina.mazii.net/api/getKana.php
+    @GET("/api/getKana.php")
+    fun getAlphabet() : Call<List<Alphabet>>
 }
