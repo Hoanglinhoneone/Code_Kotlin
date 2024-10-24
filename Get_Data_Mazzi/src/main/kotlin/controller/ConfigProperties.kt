@@ -12,14 +12,11 @@ class ConfigProperties {
     private fun createFile() {
         val propertiesFile = File(this.filePaths)
 
-        // Kiểm tra xem file đã tồn tại chưa
         if (!propertiesFile.exists()) {
-            // Tạo file properties mới và thêm nội dung
             val properties = Properties().apply {
-                setProperty("n", "1")  // Thay đổi giá trị theo nhu cầu
+                setProperty("n", "1")
             }
 
-            // Ghi nội dung vào file
             FileOutputStream(propertiesFile).use { outputStream ->
                 properties.store(outputStream, "Configuration Properties")
             }
@@ -29,20 +26,17 @@ class ConfigProperties {
             println("File config.properties đã tồn tại.")
         }
 
-        // Kiểm tra sự tồn tại của file sau khi chạy
         println("Current working directory: ${System.getProperty("user.dir")}")
         println("File exists: ${propertiesFile.exists()}")
     }
 
     fun readFile(): Long {
         createFile()
-        // read file properties
         val properties = Properties()
         FileInputStream(this.filePaths).use { inputStream ->
             properties.load(inputStream)
         }
 
-        // get number time :
         val n = properties.getProperty("n")?.toInt() ?: 1
         return TimeUnit.HOURS.toMillis(n.toLong())
     }

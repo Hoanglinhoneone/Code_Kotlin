@@ -7,4 +7,8 @@ data class Alphabet(
     val kata: String,
     val groupe: String,
     val example: String,
-)
+) {
+    fun getString() : String {
+        return "$id/$romaji/$hira/$kata/$groupe/$example"
+    }
+}
